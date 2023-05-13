@@ -1040,7 +1040,6 @@ async onCall(json) {
 
 global.dfail = (type, m, conn) => {
     let tag = `*@${m.sender.split("@")[0]}*`
-    let imgr = 'https://telegra.ph/file/3c35f76b1a5ba9cf5e51b.jpg'
     let nmsr = `👋 Hai ${tag}!`
     let msg = {
         rowner: `${nmsr}\n\nPerintah ini hanya dapat digunakan oleh *Real Owner*!`,
@@ -1053,17 +1052,15 @@ global.dfail = (type, m, conn) => {
         botAdmin: `${nmsr}\n\nJadikan bot sebagai *Admin* untuk menggunakan perintah ini!`,
         restrict: `${nmsr}\n\nFitur ini di *disable*!`
     }[type]
-    if (msg) return conn.sendButton(m.chat, msg, wm, `${imgr}`, [['Menu', '.menu'], ['Owner', '.owner']], m)
-    let daftar = 'https://telegra.ph/file/b3c4d7b4d38dd874d5575.jpg'
+    if (msg) return m.reply(`${msg}`)
     let msgg = {
-        unreg: `${nmsr}\n\nAnda belum terdaftar!\n\nPencet button dibawah ini untuk terdaftar`
+        unreg: `${nmsr}\n\nAnda belum terdaftar!\n\nKetik .daftar nama.umur untuk mendaftar`
     }[type]
-    if (msgg) return conn.sendButton(m.chat, msgg, wm, `${daftar}`, [['Daftar', '.daftar2'], ['Owner', '.owner']], m)
-    let preimg = 'https://telegra.ph/file/c8649162817e14859cc0f.jpg'
+    if (msgg) return m.reply(`${msgg}`)
     let msg2 = {
         premium: `${nmsr}\n\nPerintah ini hanya dapat digunakan oleh *Premium*!`
     }[type]
-    if (msg2) return conn.sendButton(m.chat, msg2, wm, `${preimg}`, [['Menu', '.menu'], ['Owner', '.owner']], m)
+    if (msg2) m.reply(`${msg2}`)
 }
 
 let fs = require('fs')
